@@ -1,6 +1,7 @@
-import { ApplicationRef, DoBootstrap, NgModule } from '@angular/core';
+import { ApplicationRef, DoBootstrap, Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { OrderSummaryComponent } from './order-summary.component';
+import { createCustomElement } from '@angular/elements';
 
 @NgModule({
   imports: [BrowserModule],
@@ -8,7 +9,13 @@ import { OrderSummaryComponent } from './order-summary.component';
   exports: [OrderSummaryComponent],
 })
 export class OrderSummaryModule implements DoBootstrap {
+  constructor(private injector: Injector) {}
+
   ngDoBootstrap(appRef: ApplicationRef): void {
-    appRef.bootstrap(OrderSummaryComponent);
+    const element = createCustomElement(OrderSummaryComponent, {
+      injector: this.injector,
+    });
+
+    customElements.define('x-order-summary', element);
   }
 }

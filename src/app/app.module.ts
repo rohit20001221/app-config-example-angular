@@ -3,10 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { createAppConfigFactory } from './app-config';
+import { ElementsModule } from './elements.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule],
+  imports: [BrowserModule, ElementsModule],
   providers: [
     {
       provide: APP_INITIALIZER,
