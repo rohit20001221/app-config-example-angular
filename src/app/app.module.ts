@@ -1,16 +1,22 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule, inject } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { createAppConfigFactory } from './app-config';
 
 @NgModule({
-  declarations: [
-    AppComponent
+  declarations: [AppComponent],
+  imports: [BrowserModule],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: createAppConfigFactory({
+        app_name: 'universal_search',
+        env: 'local',
+      }),
+      multi: true,
+    },
   ],
-  imports: [
-    BrowserModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
