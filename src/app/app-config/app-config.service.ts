@@ -21,7 +21,7 @@ export class AppConfigManifestService {
       // TODO: replace logic for fetching the config from server
       setTimeout(() => {
         resolve(true);
-      }, 5000);
+      }, 100);
     });
   }
 }
